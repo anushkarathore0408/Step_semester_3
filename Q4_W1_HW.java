@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class Q4_W1_HW
+{
+    static void analyzeInventory(int[] sectionA, int[] sectionB)
+    {
+        int totalA = 0;
+        int totalB = 0;
+
+        for(int i = 0; i < sectionA.length; i++)
+        {
+            totalA = totalA + sectionA[i];
+            totalB = totalB + sectionB[i];
+        }
+
+        String status;
+
+        if(totalA == totalB)
+            status = "Balanced";
+        else
+            status = "Not Balanced";
+
+        int highest = sectionA[0];
+        String section = "Section A";
+        int index = 0;
+
+        for(int i = 0; i < sectionA.length; i++)
+        {
+            if(sectionA[i] > highest)
+            {
+                highest = sectionA[i];
+                section = "Section A";
+                index = i;
+            }
+
+            if(sectionB[i] > highest)
+            {
+                highest = sectionB[i];
+                section = "Section B";
+                index = i;
+            }
+        }
+
+        System.out.println("Section A Total: " + totalA +
+                " | Section B Total: " + totalB +
+                " | Status: " + status +
+                " | Highest Quantity: " + highest +
+                " (" + section + ", Item " + (index + 1) + ")");
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        int[] sectionA = new int[3];
+        int[] sectionB = new int[3];
+
+        System.out.println("Enter Section A quantities:");
+
+        for(int i = 0; i < 3; i++)
+        {
+            sectionA[i] = sc.nextInt();
+        }
+
+        System.out.println("Enter Section B quantities:");
+
+        for(int i = 0; i < 3; i++)
+        {
+            sectionB[i] = sc.nextInt();
+        }
+
+        analyzeInventory(sectionA, sectionB);
+    }
+}
